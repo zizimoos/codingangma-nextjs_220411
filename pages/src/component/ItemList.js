@@ -3,10 +3,10 @@ import React from "react";
 
 function itemList({ list }) {
   return (
-    <div>
-      {list.slice(0, 10).map((item, index) => {
+    <div className="container">
+      {list.slice(0, 20).map((item, index) => {
         return (
-          <div key={index} className="container">
+          <div key={index} className="unit">
             <div>
               <Link href={`/view/${item.id}`}>
                 <a>
@@ -21,12 +21,13 @@ function itemList({ list }) {
                   />
                 </a>
               </Link>
+              <hr></hr>
               <div className="texts">
                 <div>name : {item.name}</div>
-                <div>category : {item.category}</div>
+                {/* <div>category : {item.category}</div> */}
                 <div>brand : {item.brand}</div>
-                <div>price : {item.price}</div>
-                <div>id number : {item.id}</div>
+                <div className="price">price :$ {item.price}</div>
+                {/* <div>id number : {item.id}</div> */}
               </div>
             </div>
           </div>
@@ -36,11 +37,26 @@ function itemList({ list }) {
         .container {
           width: 900px;
           height: 100%;
+          margin: 0 auto;
           display: grid;
-          grid-template-columns: 200px 200px 200px;
+          grid-template-columns: 220px 220px 220px 220px;
+          gap: 10px;
+        }
+        .unit {
+          border: 1px solid teal;
+          border-radius: 10px;
+          padding: 10px;
         }
         .texts {
-          margin-left: 20px;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+        }
+        .price {
+          color: teal;
+          font-weight: 500;
         }
       `}</style>
     </div>

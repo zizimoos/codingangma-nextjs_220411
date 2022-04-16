@@ -6,12 +6,15 @@ import ItemList from "./src/component/itemList";
 
 export default function Home() {
   const [list, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const API_URL =
     "http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick";
 
   function getData() {
     axios.get(API_URL).then((res) => {
       setList(res.data);
+      setIsLoading(false);
     });
   }
 
@@ -33,7 +36,8 @@ export default function Home() {
         <div>베스트상품</div>
         <br></br>
       </main>
-      <ItemList list={list}></ItemList>
+      {isLoading && <div>isLoading...</div>}
+      {!isLoading && <ItemList list={list} />}
       <footer className={styles.footer}>Powered by Azerc</footer>
     </div>
   );
