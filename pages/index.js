@@ -2,14 +2,13 @@ import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import ItemList from "./src/component/itemList";
+import ItemList from "./src/component/ItemList";
 
 export default function Home() {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const API_URL =
-    "http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   function getData() {
     axios.get(API_URL).then((res) => {

@@ -3,13 +3,14 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
-function id({ list }) {
+function id({ list, name }) {
   return (
     <>
       <Head>
         <title>{list.name}</title>
         <meta name="description" content={list.description} />
       </Head>
+      {name} 환경입니다.
       <div className="itemBox">
         <img
           src={list.image_link}
@@ -71,6 +72,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       list: res.data,
+      name: process.env.name,
     },
   };
 }

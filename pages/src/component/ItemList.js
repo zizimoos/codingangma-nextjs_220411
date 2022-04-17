@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function itemList({ list }) {
+function ItemList({ list }) {
   return (
     <div className="container">
       {list.slice(0, 20).map((item, index) => {
@@ -11,28 +11,22 @@ function itemList({ list }) {
               <Link href={`/view/${item.id}`}>
                 <a>
                   <img
-                    src={
-                      item.image_link
-                        ? item.image_link
-                        : "https://cdn.shopify.com/s/files/1/1338/0845/products/brain-freeze_a_800x1200.jpg?v=1502255076"
-                    }
+                    src={item.image_link}
                     alt={item.name}
                     style={{ width: "200px", height: "200px" }}
                   />
                 </a>
               </Link>
-              <hr></hr>
               <div className="texts">
                 <div>name : {item.name}</div>
-                {/* <div>category : {item.category}</div> */}
                 <div>brand : {item.brand}</div>
                 <div className="price">price :$ {item.price}</div>
-                {/* <div>id number : {item.id}</div> */}
               </div>
             </div>
           </div>
         );
       })}
+
       <style jsx>{`
         .container {
           width: 900px;
@@ -63,4 +57,4 @@ function itemList({ list }) {
   );
 }
 
-export default itemList;
+export default ItemList;
