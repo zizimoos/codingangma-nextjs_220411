@@ -1,16 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 function ItemList({ list }) {
   return (
     <div className="container">
-      {list.slice(0, 20).map((item, index) => {
+      {list.map((item, index) => {
         return (
           <div key={index} className="unit">
             <div>
               <Link href={`/view/${item.id}`}>
                 <a>
-                  <img
+                  <Image
                     src={item.image_link}
                     alt={item.name}
                     style={{ width: "200px", height: "200px" }}

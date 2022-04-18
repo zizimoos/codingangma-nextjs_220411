@@ -4,23 +4,23 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import ItemList from "./src/component/ItemList";
 
-export default function Home() {
-  const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Home({ list }) {
+  // const [list, setList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  // const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  function getData() {
-    axios.get(API_URL).then((res) => {
-      setList(res.data);
-      setIsLoading(false);
-    });
-  }
+  // function getData() {
+  //   axios.get(API_URL).then((res) => {
+  //     setList(res.data);
+  //     setIsLoading(false);
+  //   });
+  // }
 
-  useEffect(() => {
-    getData();
-    console.log("UseEffect");
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  //   console.log("UseEffect");
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -35,9 +35,22 @@ export default function Home() {
         <div>베스트상품</div>
         <br></br>
       </main>
-      {isLoading && <div>isLoading...</div>}
-      {!isLoading && <ItemList list={list} />}
+
+      <ItemList list={list} />
       <footer className={styles.footer}>Powered by Azerc</footer>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const apiUrl = process.env.apiUrl;
+  const res = await axios.get(apiUrl);
+  const data = res.data;
+
+  return {
+    props: {
+      list: data,
+      name: process.env.name,
+    },
+  };
 }
